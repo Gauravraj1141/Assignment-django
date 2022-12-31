@@ -1,0 +1,107 @@
+{% extends 'grsolapp/base.html' %}
+
+{% block title %}
+otp
+{% endblock title %}
+
+
+
+{% block buttons %}
+<div class="d-flex" role="button">
+    <a class=" btn btn-success mx-2 " href="{% url 'register' %}">Sign Up</a>
+    <a class=" btn btn-primary" href="{% url 'login' %}">Log In</a>
+</div>
+{% endblock buttons %}
+
+
+
+
+{% comment %} body content {% endcomment %}
+
+{% block content %}
+
+
+<div class="container h-100 text-center ">
+    <div class="mt-4">
+
+        {% if form.non_field_errors %}
+        <div class="non-field-errors">
+            {% for err in form.non_field_errors %}
+            <p class="form-error">{{ err }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% comment %} show success messages {% endcomment %}
+
+
+
+
+
+
+
+        <section class="vh-100">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col col-xl-10">
+                        <div class="card" style="border-radius: 1rem;">
+                            <div class="row g-0">
+                                <div class="col-md-6 col-lg-5 d-none d-md-block">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img2.webp"
+                                        alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                                </div>
+                                <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                    <div class="card-body p-4 p-lg-5 text-black">
+                                        <form action="{% url 'enterOtp' %}" method="POST">
+                                            {% csrf_token %}
+
+
+
+                                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Enter Otp</h5>
+
+                                            {% comment %} here we give non field errros {% endcomment %}
+
+                                            {% if message %}
+                                            <div class="alert alert-{{ class }}" role="alert">
+                                                {{ message }}
+                                            </div>
+
+                                            {% endif %}
+
+                                            {% for field in form %}
+
+                                            <div class="form-outline mb-4 rounded-2">
+                                                <label class="form-label"
+                                                    for="{{ field.auto_id }}">{{ field.label }}</label>
+                                                {{ field }}
+                                                <div class="d-grid  d-md-flex justify-content-md-end">
+                                                    <span class="text-danger"> {{ field.errors|striptags }}</span>
+                                                </div>
+
+                                            </div>
+                                            {% endfor %}
+
+                                            <div class="pt-1 mb-4">
+                                                <input type="submit" value="log in"
+                                                    class="btn btn-dark btn-lg btn-block">
+                                            </div>
+
+                                        </form>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+</div>
+
+
+{% endblock content %}

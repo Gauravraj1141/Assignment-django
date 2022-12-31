@@ -1,0 +1,70 @@
+{% extends 'grsolapp/base.html' %}
+
+
+<!--title -->
+{% block title %}
+Home
+{% endblock title %}
+
+
+
+{% comment %} it is the logic for our login and logout buttons {% endcomment %}
+
+{% block buttons %}
+
+{% if login %}
+
+<div class="d-flex" role="button">
+    <a class=" btn btn-success mx-2 " href="{% url 'logout' %}">Log Out</a>
+
+
+</div>
+
+
+{% else %}
+
+<div class="d-flex" role="button">
+    <a class=" btn btn-success mx-2 " href="{% url 'register' %}">Sign Up</a>
+    <a class=" btn btn-primary" href="{% url 'login' %}">Log In</a>
+</div>
+
+{% endif %}
+
+{% endblock buttons %}
+
+<!--body content -->
+{% block content %}
+
+<div class="container h-100 text-center mycolor my-3 rounded-3 ">
+    <div class="mt-5">
+        <h2>Home </h2>
+        <hr>
+
+        {% if message %}
+        {% for msg in message %}
+        <div class="alert alert-success" role="alert" id="alert">
+            <h4 {% if msg.tags %} class=" {{ msg.tags }}  alert-heading" {% endif %} id="alert">{{ msg }}</h4>
+        </div>
+        {% endfor %}
+
+        {% endif %}
+
+
+        {% if login %}
+        <div class="text-white">
+            <h1>Welcome to this site </h1>
+        </div>
+
+        {% else %}
+        <div class="text-white">
+            <h1>Please login or register for showing reports </h1>
+        </div>
+        {% endif %}
+
+
+
+
+
+    </div>
+</div>
+{% endblock content %}

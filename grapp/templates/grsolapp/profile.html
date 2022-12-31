@@ -1,0 +1,48 @@
+{% extends 'grsolapp/base.html' %}
+
+{% block title %}
+profile
+{% endblock title %}
+
+
+
+
+{% block content %}
+
+<div class="container my-4 text-center border-white">
+
+    {% if message %}
+    <div class="alert alert-{{ class }}" role="alert">
+        <h2 class="text-dark">{{ message }}</h2>
+    </div>
+
+    {% endif %}
+
+    <div class="font-heading text-center text-white">
+        <h3>{{ Name_field }}</h3>
+    </div>
+
+    <table class="table text-white">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">sr.no.</th>
+                <th scope="col">{{ fieldname }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fielddata in report  %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ fielddata }}</td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+</div>
+
+
+{% endblock content %}
